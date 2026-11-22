@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/bgImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop"
+        android:visibility="gone" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#55000000" />
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="12dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/app_name"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnBackground"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Background" />
+        </LinearLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:tabMode="scrollable" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="12dp"
+            android:layout_weight="1">
+
+            <!-- Halaman 1: Ekstrak RPA -->
+            <LinearLayout
+                android:id="@+id/pageExtract"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/panel_bg"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ekstrak arsip .rpa (RPA-2.0, 3.0, 3.2) ke sebuah folder."
+                    android:textColor="#DDFFFFFF" />
+
+                <Button
+                    android:id="@+id/btnPickArchive"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Pilih file .rpa" />
+
+                <TextView
+                    android:id="@+id/tvArchive"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Belum dipilih"
+                    android:textColor="#AAFFFFFF" />
+
+                <Button
+                    android:id="@+id/btnPickOut"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Pilih folder tujuan" />
+
+                <TextView
+                    android:id="@+id/tvOut"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Belum dipilih"
+                    android:textColor="#AAFFFFFF" />
+
+                <Button
+                    android:id="@+id/btnExtract"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Mulai ekstrak" />
+
+                <ProgressBar
+                    android:id="@+id/progressExtract"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:visibility="gone" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tvLogExtract"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="monospace"
+                        android:textColor="#FFFFFF"
+                        android:textIsSelectable="true"
+                        android:textSize="12sp" />
+                </ScrollView>
+            </LinearLayout>
+
+            <!-- Halaman 2: Buat RPA -->
+            <LinearLayout
+                android:id="@+id/pageBuild"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/panel_bg"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Kemas semua file di sebuah folder (termasuk subfolder) menjadi satu arsip .rpa (format RPA-3.0)."
+                    android:textColor="#DDFFFFFF" />
+
+                <Button
+                    android:id="@+id/btnPickSrc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Pilih folder sumber" />
+
+                <TextView
+                    android:id="@+id/tvSrc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Belum dipilih"
+                    android:textColor="#AAFFFFFF" />
+
+                <Button
+                    android:id="@+id/btnBuild"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Buat .rpa" />
+
+                <ProgressBar
+                    android:id="@+id/progressBuild"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:visibility="gone" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tvLogBuild"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="monospace"
+                        android:textColor="#FFFFFF"
+                        android:textIsSelectable="true"
+                        android:textSize="12sp" />
+                </ScrollView>
+            </LinearLayout>
+
+            <!-- Halaman 3: Editor RPY -->
+            <LinearLayout
+                android:id="@+id/pageRpy"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/panel_bg"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnRpyNew"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:insetLeft="0dp"
+                        android:insetRight="0dp"
+                        android:paddingHorizontal="4dp"
+                        android:text="Baru"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btnRpyOpen"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_weight="1"
+                        android:paddingHorizontal="4dp"
+                        android:text="Buka"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btnRpySave"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_weight="1"
+                        android:paddingHorizontal="4dp"
+                        android:text="Simpan"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btnRpySaveAs"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_weight="1.3"
+                        android:paddingHorizontal="4dp"
+                        android:text="Simpan sbg"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvRpyName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="(belum ada file)"
+                    android:textColor="#AAFFFFFF"
+                    android:textSize="12sp" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:id="@+id/snippetRow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" />
+                </HorizontalScrollView>
+
+                <EditText
+                    android:id="@+id/etRpy"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/editor_bg"
+                    android:gravity="top|start"
+                    android:hint="Tulis skrip .rpy di sini…"
+                    android:importantForAutofill="no"
+                    android:inputType="textMultiLine|textNoSuggestions"
+                    android:padding="10dp"
+                    android:scrollbars="vertical"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#66FFFFFF"
+                    android:textSize="13sp"
+                    android:typeface="monospace" />
+            </LinearLayout>
+
+            <!-- Halaman 4: RPYC -->
+            <LinearLayout
+                android:id="@+id/pageRpyc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/panel_bg"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvRpycHint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Dekompilasi .rpyc menjadi .rpy (best-effort: label, dialog, menu, if, jump, call, return, python, define, default, scene/show/hide). Node yang belum didukung ditandai sebagai komentar."
+                    android:textColor="#DDFFFFFF" />
+
+                <Button
+                    android:id="@+id/btnPickRpyc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Pilih 1 file .rpyc" />
+
+                <Button
+                    android:id="@+id/btnPickRpycDir"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pilih folder (semua .rpyc di dalamnya)" />
+
+                <Button
+                    android:id="@+id/btnSaveRpyc"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="Simpan hasil sebagai .rpy" />
+
+                <ProgressBar
+                    android:id="@+id/progressRpyc"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:visibility="gone" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tvRpycOut"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="monospace"
+                        android:textColor="#FFFFFF"
+                        android:textIsSelectable="true"
+                        android:textSize="12sp" />
+                </ScrollView>
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+</FrameLayout>
